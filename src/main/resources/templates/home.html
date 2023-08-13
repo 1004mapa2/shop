@@ -11,9 +11,12 @@
     <a href="login">로그인</a>
 </div>
 <div th:if="${session.mvo} != null">
+<!--    <span th:text="${session.mvo['memProfile']}"></span>-->
+    <img th:src="${session.mvo['memProfile']}">
+<!--    <img src="/images/zzzz.PNG">-->
     <a href="myPage">마이페이지</a>
     <a href="logout">로그아웃</a>
-    <img th:src="/images/sample2.png" alt="나의 이미지">
+<!--    <img th:src="/images/${session.mvo.getMemProfile()}" alt="나의 이미지">-->
 </div>
 
 </body>

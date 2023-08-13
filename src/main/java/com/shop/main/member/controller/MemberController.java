@@ -4,10 +4,8 @@ package com.shop.main.member.controller;
 import com.shop.main.member.domain.Member;
 import com.shop.main.member.mapper.MemberMapper;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -57,14 +55,12 @@ public class MemberController {
 
 //        파일 크기 조정하는 로직 추가해야 됨
         if(!file.isEmpty()) {
+            //images폴더에 파일 저장하는 로직
             String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
-            System.out.println(fullPath);
             File saveFile = new File(fullPath, file.getOriginalFilename());
             file.transferTo(saveFile);
         }
-        member.setMemProfile(file.getOriginalFilename());
-        System.out.println(member.getMemProfile());
-
+        member.setMemProfile("/images/" + file.getOriginalFilename());
 
         int result = mapper.memberRegister(member);
 
