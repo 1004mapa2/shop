@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.main.member.mapper.MemberMapper">
+
+    <insert id="memberRegister" parameterType="com.shop.main.member.domain.Member">
+        insert into member1(memId, memPassword, memName, memGender, memProfile)
+        values (#{memId}, #{memPassword}, #{memName}, #{memGender}, #{memProfile})
+    </insert>
+
+    <select id="memberLogin" parameterType="com.shop.main.member.domain.Member" resultType="com.shop.main.member.domain.Member">
+        select * from member1 where memId=#{memId} and memPassword=#{memPassword}
+    </select>
+
+
+</mapper>

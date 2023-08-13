@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>membership</title>
+</head>
+<body>
+    <form action="/membership" method="post" enctype="multipart/form-data">
+        <div>아이디</div>
+        <input name="memId">
+        <div>비밀번호</div>
+        <input name="memPassword">
+        <div>이름</div>
+        <input name="memName">
+        <div>성별</div>
+        <input type="radio" name="memGender" value="남자">남자
+        <input type="radio" name="memGender" value="여자">여자
+        <hr>
+        <div>프로필 사진</div>
+        <input type="file" name="memProfile">
+        <div></div>
+        <button type="submit">회원가입</button>
+    </form>
+</body>
+</html>

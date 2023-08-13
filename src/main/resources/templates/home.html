@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>shop</title>
+</head>
+<body>
+<div>나카나카 홈페이지</div>
+<div th:if="${session.mvo} == null">
+    <a href="membership">회원가입</a>
+    <a href="login">로그인</a>
+</div>
+<div th:if="${session.mvo} != null">
+    <a href="myPage">마이페이지</a>
+    <a href="logout">로그아웃</a>
+    <div th:if="${session.mvo.getMemProfile()} != null">
+        <img th:src="resources/upload/${session.mvo.getMemProfile()}">
+    </div>
+    <div th:if="${session.mvo.getMemProfile()} == null">
+        <div>안나옴</div>
+    </div>
+</div>
+
+</body>
+</html>
