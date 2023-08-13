@@ -13,12 +13,7 @@
 <div th:if="${session.mvo} != null">
     <a href="myPage">마이페이지</a>
     <a href="logout">로그아웃</a>
-    <div th:if="${session.mvo.getMemProfile()} != null">
-        <img th:src="resources/upload/${session.mvo.getMemProfile()}">
-    </div>
-    <div th:if="${session.mvo.getMemProfile()} == null">
-        <div>안나옴</div>
-    </div>
+    <img th:src="/images/sample2.png" alt="나의 이미지">
 </div>
 
 </body>
