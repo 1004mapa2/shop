@@ -9,14 +9,12 @@
 <div th:if="${session.mvo} == null">
     <a href="membership">회원가입</a>
     <a href="login">로그인</a>
+    <button type="button" th:onclick="|location.href='@{/shirt}'|">셔츠 추천</button>
 </div>
 <div th:if="${session.mvo} != null">
-<!--    <span th:text="${session.mvo['memProfile']}"></span>-->
-    <img th:src="${session.mvo['memProfile']}">
-<!--    <img src="/images/zzzz.PNG">-->
+    <img th:src="|/images/${session.mvo['memProfile']}|" width="100" height="100"/>
     <a href="myPage">마이페이지</a>
     <a href="logout">로그아웃</a>
-<!--    <img th:src="/images/${session.mvo.getMemProfile()}" alt="나의 이미지">-->
 </div>
 
 </body>
