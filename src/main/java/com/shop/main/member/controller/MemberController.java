@@ -6,6 +6,7 @@ import com.shop.main.member.mapper.MemberMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
@@ -51,19 +52,17 @@ public class MemberController {
     }
 
     @PostMapping("/membership")
-    public String memberRegister(Member member, MultipartFile file) throws IOException {
+    public String memberRegister(Member member,
+                                 @RequestParam MultipartFile file) throws IOException {
 
 //        파일 크기 조정하는 로직 추가해야 됨
         if(!file.isEmpty()) {
             //images폴더에 파일 저장하는 로직
-            String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images";
-            File saveFile = new File(fullPath, file.getOriginalFilename());
-            file.transferTo(saveFile);
+            String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\" + file.getOriginalFilename();
+            file.transferTo(new File(fullPath));
+            member.setMemProfile(file.getOriginalFilename());
         }
-        member.setMemProfile("/images/" + file.getOriginalFilename());
-
         int result = mapper.memberRegister(member);
-
         if(result == 0){
             return "member/membership";
         }
