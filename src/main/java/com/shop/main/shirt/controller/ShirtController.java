@@ -1,34 +1,44 @@
 package com.shop.main.shirt.controller;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
-import java.util.Iterator;
+import java.util.List;
 
 @Controller
 public class ShirtController {
 
     @GetMapping("/shirt")
-    public String goShirt() throws IOException {
-//        String URL = "https://1004mapa2.tistory.com/";
-        String musinUrl = "https://www.musinsa.com/categories/item/001";
+    public String goShirt() {
 
-        Document doc = Jsoup.connect(musinUrl).get();
-        String text = doc.text();
-        System.out.println(text);
-//        Iterator<Element> iterator = doc.select("strong.tit_post").iterator();
-//        Iterator<Element> iterator = doc.select("p.price").iterator();
+        String url = "https://www.musinsa.com/categories/item/001";
+        System.setProperty("webdriver.chrome.driver","C:\\chromedriver-win64\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+//        options.addArguments("headless");
 
-//        while(iterator.hasNext()){
-//            System.out.println(iterator.next().text());
-//        }
+        options.addArguments("-remote-allow-origins=*");
+        WebDriver driver = new ChromeDriver(options);
 
+        try{
+            driver.get(url);
+//            System.out.println(driver.getPageSource());
+            List<WebElement> el = driver.findElements(By.className("list_info"));
+
+            for (WebElement element : el) {
+                System.out.println(element.getText());
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            driver.close();
+        }
+
+//        Thread.sleep(10000);
         return "shirt/shirtMain";
     }
 }

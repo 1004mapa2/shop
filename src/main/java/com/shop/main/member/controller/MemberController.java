@@ -54,8 +54,6 @@ public class MemberController {
     @PostMapping("/membership")
     public String memberRegister(Member member,
                                  @RequestParam MultipartFile file) throws IOException {
-
-//        파일 크기 조정하는 로직 추가해야 됨
         if(!file.isEmpty()) {
             //images폴더에 파일 저장하는 로직
             String fullPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\images\\" + file.getOriginalFilename();
