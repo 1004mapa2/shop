@@ -7,4 +7,5 @@ public class Shirt {
 
     private String ShirtName;
     private String ShirtPrice;
+    private String ShirtImage;
 }
